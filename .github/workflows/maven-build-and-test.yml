@@ -20,7 +20,7 @@ jobs: #define task to be executed
           distribution: "adopt"
 
       - name: cache
-        uses: actions/catche@v3
+        uses: actions/cache@v2
         with:
           path: 99450\.m2\repository
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
