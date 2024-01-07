@@ -19,5 +19,13 @@ jobs: #define task to be executed
           java-version: "11"
           distribution: "adopt"
 
+      - name: cache
+        uses: actions/catche@v3
+        with:
+          path: 99450\.m2\repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2
+
       - name: Build with Maven #build your project with maven
         run: mvn --batch-mode --update-snapshots verify
