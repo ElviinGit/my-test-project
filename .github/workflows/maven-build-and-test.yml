@@ -8,9 +8,12 @@ on: #define when workflow will run
 jobs: #define task to be executed
   build-and-test: #names of your job
     runs-on: ubuntu-latest # specify the environment
+
     steps: #define the individual steps within the job
-      - uses: actions/checkout@v3 #checkout your git repository
-      - name: Set up JDK 11 #set up java development kit
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
           java-version: "11"
