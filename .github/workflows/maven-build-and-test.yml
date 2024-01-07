@@ -28,4 +28,4 @@ jobs: #define task to be executed
             ${{ runner.os }}-m2
 
       - name: Build with Maven #build your project with maven
-        run: mvn --batch-mode --update-snapshots verify
+      run: mvn --batch-mode --update-snapshots verify
