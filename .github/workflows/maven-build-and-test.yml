@@ -27,5 +27,5 @@ jobs: #define task to be executed
           restore-keys: |
             ${{ runner.os }}-m2
 
-      - name: Build with Maven #build your project with maven
+      - name: Build with Maven # build your project with maven
       run: mvn --batch-mode --update-snapshots verify
