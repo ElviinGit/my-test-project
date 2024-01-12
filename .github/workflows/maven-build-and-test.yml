@@ -1,31 +1,29 @@
 name: Build and Test my first java automation project
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
 
-on: #define when workflow will run
-  push: #trigger on push to any action
-    branches: [main, develop] # specify branches to trigger on
-  pull_request: # trigger on pull requests
-
-jobs: #define task to be executed
-  build-and-test: #names of your job
-    runs-on: ubuntu-latest # specify the environment
-
-    steps: #define the individual steps within the job
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout repository
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Set up JDK 11
-      - uses: actions/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           java-version: "11"
           distribution: "adopt"
 
-      - name: cache
-      - uses: actions/cache@v2
+      - name: Cache Maven packages
+        uses: actions/cache@v2
         with:
-          path: 99450\.m2\repository
+          path: ~/.m2/repository
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-m2
 
-      - name: Build with Maven # build your project with maven
-      run: mvn --batch-mode --update-snapshots verify
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots verify
